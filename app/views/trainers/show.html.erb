@@ -1,0 +1,68 @@
+<header class="masthead">
+
+<div class="container d-flex h-100 align-items-center">
+  <div class="mx-auto text-center">
+  
+    <h1 class="mx-auto my-0 text-uppercase">Here is your profile!:</h1>
+    <h2 class="text-white-50 mx-auto mt-2 mb-5">Name: <%= @trainer.name %></h2>
+    <%= image_tag @trainer.image %>
+    <h2 class="text-white-50 mx-auto mt-2 mb-5">Gender: <%= @trainer.gender %></h2>
+    <h2 class="text-white-50 mx-auto mt-2 mb-5">Area: <%= @trainer.area.name %></h2><br>
+    <h2 class="text-white-50 mx-auto mt-2 mb-5">Email: <%= @trainer.email %></h2><br>
+    <h2 class="text-white-50 mx-auto mt-2 mb-5">Specialties: <%= @trainer.trainer_specialties %></h2><br>
+    <h2 class="text-white-50 mx-auto mt-2 mb-5">Bio: <%= @trainer.bio %></h2><br>
+
+    <% if current_trainer %>
+
+    <h3 class="text-white-50 mx-auto mt-2 mb-5"><%= link_to("Edit My Information", edit_trainer_path) %></h3>
+    <h3 class="text-white-50 mx-auto mt-2 mb-5"><%= link_to "Delete My Account", trainer_path(@trainer.id), method: :delete, data: {confirm: "Are you sure you want to delete your account?"} %></h3>
+
+  <% if @trainer.bookings != [] %>
+  <h1 class="mx-auto my-0 text-uppercase">Your Bookings:</h1>
+    <p class="text-white-50 mx-auto mt-2 mb-5">Please contact each client via email within 24 hours of them making an appointment, to confirm the appointment, arrange a location to meet and to arrange deposit payment.
+    Please note that if a client cancels less than 24 hours before the session, they forfeit their given deposit.</p>
+    <div>
+     <% @trainer.bookings.each do |booking| %>
+      <h2 class="text-white-50 mx-auto mt-2 mb-5"><li>You are booked with <%= link_to booking.user.name, user_path(booking.user.id) %> on <%= booking.date.strftime('%a %d %b %Y') %>, at <%= booking.time %>. Their email is: <%= booking.user.email %>. <%= link_to "Delete Booking", booking_path(booking.id), method: :delete, data: {confirm: "Are you sure you want to delete this booking?"} %></li></h2><br>
+     <% end %>
+    </div>
+  <% else %>
+     <h2 class="text-white-50 mx-auto mt-2 mb-5">You do not have any bookings yet.</h2>
+  <% end %>
+
+<% end %>
+
+
+<% if current_user %>
+<h2 class="text-white-50 mx-auto mt-2 mb-5"><%= link_to("Book a session", new_booking_path) %></h2>
+<% end %>
+
+  
+</div>
+</header>
+
+<!-- About Section -->
+<div>
+<img src="../../assets/man_hanging.jpg" class="img-fluid header_bg" alt="">
+<section id="about" class="about-section text-center">
+
+
+  
+</div>
+</section>
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="js/grayscale.min.js"></script>
+
+
+
+
+

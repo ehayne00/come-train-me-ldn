@@ -1,0 +1,71 @@
+<header class="masthead">
+
+<div class="container d-flex h-100 align-items-center">
+  <div class="mx-auto text-center">
+  
+    
+    <h2 class="text-white-50 mx-auto mt-2 mb-5">
+    <%= form_for(@trainer) do |f| %>
+        <%= f.label :username %>
+        <%= f.text_field :username %><br>
+    
+        <%= f.label :password %>
+        <%= f.password_field :password %><br>
+    
+        <%= f.label :name %>
+        <%= f.text_field :name %><br>
+    
+        <%= f.label :gender %>
+        <%= f.select :gender, Trainer::GENDERS %><br>
+    
+        <%= f.label :email %>
+        <%= f.text_field :email %><br>
+        
+        <%= f.label :area %>
+        <%= f.collection_select :area_id, Area.all, :id, :name %><br>
+    
+        <%= f.label :image %>
+        <%= f.file_field :image %><br>
+    
+        <%= f.label :price %>
+        <%= f.text_field :price %><br>
+    
+        <%= f.label :bio %>
+        <%= f.text_area :bio %><br>
+    
+        <%= f.label :specialty %>
+        <%= f.collection_check_boxes( :specialty_ids, Specialty.all, :id, :name) %><br>
+    
+        <%= f.submit %>
+    
+    <% end %>
+    
+    <% if @trainer.errors.full_messages.length > 0 %>
+    <h3> The following errors occurred: </h3>
+    <ul><% @trainer.errors.full_messages.each do |message| %>
+    <li style=”color:red”><%= message %></li>
+    <% end %>
+    </ul>
+    <% end %>
+  
+</div>
+</header>
+
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script src="js/grayscale.min.js"></script>
+
+
+
+
+
+
